@@ -16,7 +16,22 @@
 		18963DC52C61D9980063B76A /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18963DC42C61D9980063B76A /* Contact.swift */; };
 		18963DCA2C61DAD50063B76A /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18963DC92C61DAD50063B76A /* ContactViewModel.swift */; };
 		18963DCC2C6208490063B76A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18963DCB2C6208490063B76A /* ContactTableViewCell.swift */; };
+		18EE82002C623F4800ABA3BE /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE81FF2C623F4800ABA3BE /* NetworkHelper.swift */; };
+		18EE82022C62412F00ABA3BE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE82012C62412F00ABA3BE /* Constants.swift */; };
+		18EE820A2C6244F900ABA3BE /* SwiftTestRepoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE82092C6244F900ABA3BE /* SwiftTestRepoTests.swift */; };
+		18EE82112C62470C00ABA3BE /* ContactViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE82102C62470C00ABA3BE /* ContactViewModelTests.swift */; };
+		18EE82132C62473800ABA3BE /* NetworkHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE82122C62473800ABA3BE /* NetworkHelperTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18EE820B2C6244F900ABA3BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18963DA52C61D84A0063B76A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18963DAC2C61D84A0063B76A;
+			remoteInfo = SwiftTestRepo;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		18963DAD2C61D84A0063B76A /* SwiftTestRepo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTestRepo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,10 +45,23 @@
 		18963DC42C61D9980063B76A /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		18963DC92C61DAD50063B76A /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		18963DCB2C6208490063B76A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		18EE81FF2C623F4800ABA3BE /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		18EE82012C62412F00ABA3BE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		18EE82072C6244F900ABA3BE /* SwiftTestRepoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftTestRepoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18EE82092C6244F900ABA3BE /* SwiftTestRepoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTestRepoTests.swift; sourceTree = "<group>"; };
+		18EE82102C62470C00ABA3BE /* ContactViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModelTests.swift; sourceTree = "<group>"; };
+		18EE82122C62473800ABA3BE /* NetworkHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		18963DAA2C61D84A0063B76A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18EE82042C6244F900ABA3BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -47,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				18963DAF2C61D84A0063B76A /* SwiftTestRepo */,
+				18EE82082C6244F900ABA3BE /* SwiftTestRepoTests */,
 				18963DAE2C61D84A0063B76A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				18963DAD2C61D84A0063B76A /* SwiftTestRepo.app */,
+				18EE82072C6244F900ABA3BE /* SwiftTestRepoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,8 +126,20 @@
 			isa = PBXGroup;
 			children = (
 				18963DC92C61DAD50063B76A /* ContactViewModel.swift */,
+				18EE81FF2C623F4800ABA3BE /* NetworkHelper.swift */,
+				18EE82012C62412F00ABA3BE /* Constants.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18EE82082C6244F900ABA3BE /* SwiftTestRepoTests */ = {
+			isa = PBXGroup;
+			children = (
+				18EE82092C6244F900ABA3BE /* SwiftTestRepoTests.swift */,
+				18EE82102C62470C00ABA3BE /* ContactViewModelTests.swift */,
+				18EE82122C62473800ABA3BE /* NetworkHelperTests.swift */,
+			);
+			path = SwiftTestRepoTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +162,24 @@
 			productReference = 18963DAD2C61D84A0063B76A /* SwiftTestRepo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		18EE82062C6244F900ABA3BE /* SwiftTestRepoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18EE820D2C6244F900ABA3BE /* Build configuration list for PBXNativeTarget "SwiftTestRepoTests" */;
+			buildPhases = (
+				18EE82032C6244F900ABA3BE /* Sources */,
+				18EE82042C6244F900ABA3BE /* Frameworks */,
+				18EE82052C6244F900ABA3BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18EE820C2C6244F900ABA3BE /* PBXTargetDependency */,
+			);
+			name = SwiftTestRepoTests;
+			productName = SwiftTestRepoTests;
+			productReference = 18EE82072C6244F900ABA3BE /* SwiftTestRepoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -132,6 +192,10 @@
 				TargetAttributes = {
 					18963DAC2C61D84A0063B76A = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					18EE82062C6244F900ABA3BE = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 18963DAC2C61D84A0063B76A;
 					};
 				};
 			};
@@ -149,6 +213,7 @@
 			projectRoot = "";
 			targets = (
 				18963DAC2C61D84A0063B76A /* SwiftTestRepo */,
+				18EE82062C6244F900ABA3BE /* SwiftTestRepoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -164,6 +229,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		18EE82052C6244F900ABA3BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -171,16 +243,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EE82002C623F4800ABA3BE /* NetworkHelper.swift in Sources */,
 				18963DCC2C6208490063B76A /* ContactTableViewCell.swift in Sources */,
 				18963DC52C61D9980063B76A /* Contact.swift in Sources */,
 				18963DB52C61D84A0063B76A /* ViewController.swift in Sources */,
 				18963DCA2C61DAD50063B76A /* ContactViewModel.swift in Sources */,
 				18963DB12C61D84A0063B76A /* AppDelegate.swift in Sources */,
 				18963DB32C61D84A0063B76A /* SceneDelegate.swift in Sources */,
+				18EE82022C62412F00ABA3BE /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18EE82032C6244F900ABA3BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18EE820A2C6244F900ABA3BE /* SwiftTestRepoTests.swift in Sources */,
+				18EE82112C62470C00ABA3BE /* ContactViewModelTests.swift in Sources */,
+				18EE82132C62473800ABA3BE /* NetworkHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18EE820C2C6244F900ABA3BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18963DAC2C61D84A0063B76A /* SwiftTestRepo */;
+			targetProxy = 18EE820B2C6244F900ABA3BE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		18963DB62C61D84A0063B76A /* Main.storyboard */ = {
@@ -375,6 +467,40 @@
 			};
 			name = Release;
 		};
+		18EE820E2C6244F900ABA3BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-praveen.com.SwiftTestRepoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftTestRepo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftTestRepo";
+			};
+			name = Debug;
+		};
+		18EE820F2C6244F900ABA3BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-praveen.com.SwiftTestRepoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftTestRepo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftTestRepo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -392,6 +518,15 @@
 			buildConfigurations = (
 				18963DC22C61D84D0063B76A /* Debug */,
 				18963DC32C61D84D0063B76A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18EE820D2C6244F900ABA3BE /* Build configuration list for PBXNativeTarget "SwiftTestRepoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18EE820E2C6244F900ABA3BE /* Debug */,
+				18EE820F2C6244F900ABA3BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

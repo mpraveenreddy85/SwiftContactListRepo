@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         // Set the title for the navigation bar
-        self.title = "Contact List"
+        self.title = Constants.Titles.contactList
         
         setupTableView()
         setupActivityIndicator()
@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     private func setupTableView() {
         tableView.dataSource = self
         // Register the custom cell class
-        tableView.register(ContactTableViewCell.self, forCellReuseIdentifier: "contactCell")
+        tableView.register(ContactTableViewCell.self, forCellReuseIdentifier: Constants.CellIdentifiers.contactCell)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView() // Removes empty cell separators
         
@@ -77,18 +77,23 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     func setupViewModel() {
         viewModel.onContactsFetched = { [weak self] in
-            self?.activityIndicator.stopAnimating()
-            self?.tableView.reloadData()
-            self?.errorLabel.isHidden = true
+            // Ensure UI updates are done on the main thread
+            DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
+                self?.tableView.reloadData()
+                self?.errorLabel.isHidden = true
+            }
         }
         
         viewModel.onFetchError = { [weak self] error in
-            self?.activityIndicator.stopAnimating()
-            self?.errorLabel.text = "Failed to load contacts: \(error.localizedDescription)"
-            self?.errorLabel.isHidden = false
+            DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
+                self?.errorLabel.text = Constants.Errors.fetchError + error.localizedDescription
+                self?.errorLabel.isHidden = false
+            }
         }
     }
-    
+
     // UITableViewDataSource method to get the number of rows in the section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfContacts()
@@ -96,7 +101,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     // UITableViewDataSource method to configure the cell for a row at a specific indexPath
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.contactCell, for: indexPath) as! ContactTableViewCell
         
         if let contact = viewModel.contact(at: indexPath.row) {
             cell.configure(with: contact)
