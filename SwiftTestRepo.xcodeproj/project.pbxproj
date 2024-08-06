@@ -15,6 +15,7 @@
 		18963DBD2C61D84D0063B76A /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 18963DBC2C61D84D0063B76A /* Base */; };
 		18963DC52C61D9980063B76A /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18963DC42C61D9980063B76A /* Contact.swift */; };
 		18963DCA2C61DAD50063B76A /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18963DC92C61DAD50063B76A /* ContactViewModel.swift */; };
+		18963DCC2C6208490063B76A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18963DCB2C6208490063B76A /* ContactTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		18963DBE2C61D84D0063B76A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18963DC42C61D9980063B76A /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		18963DC92C61DAD50063B76A /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		18963DCB2C6208490063B76A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				18963DB42C61D84A0063B76A /* ViewController.swift */,
+				18963DCB2C6208490063B76A /* ContactTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18963DCC2C6208490063B76A /* ContactTableViewCell.swift in Sources */,
 				18963DC52C61D9980063B76A /* Contact.swift in Sources */,
 				18963DB52C61D84A0063B76A /* ViewController.swift in Sources */,
 				18963DCA2C61DAD50063B76A /* ContactViewModel.swift in Sources */,
