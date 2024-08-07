@@ -15,11 +15,20 @@ class NetworkHelper: NetworkHelperProtocol {
     /// Private initializer to ensure singleton usage.
     private init() {}
     
-    /// Fetches contacts data from the predefined URL.
+   
+    /// Fetches raw contacts data from the predefined URL.
     /// - Parameter completion: A closure that is called with the result of the fetch operation, containing either the fetched data or an error.
     func fetchContacts(completion: @escaping (Result<Data, Error>) -> Void) {
+        fetchData(urlString: Constants.URLs.contactsURL, completion: completion)
+    }
+    
+    /// Fetches and decodes data from the specified URL.
+    /// - Parameters:
+    ///   - urlString: The URL string from which to fetch data.
+    ///   - completion: A closure that is called with the result of the fetch operation, containing either the decoded data or an error.
+    func fetchData<T: Decodable>(urlString: String, completion: @escaping (Result<T, Error>) -> Void) {
         // Ensure the URL is valid
-        guard let url = URL(string: Constants.URLs.contactsURL) else {
+        guard let url = URL(string: urlString) else {
             completion(.failure(NetworkError.invalidURL))
             return
         }
@@ -38,16 +47,17 @@ class NetworkHelper: NetworkHelperProtocol {
                 return
             }
             
-            // Pass the fetched data to the completion handler
-            completion(.success(data))
+            do {
+                // Decode the data into the specified type
+                let decodedData = try JSONDecoder().decode(T.self, from: data)
+                // Pass the decoded data to the completion handler
+                completion(.success(decodedData))
+            } catch {
+                // If decoding fails, pass the error to the completion handler
+                completion(.failure(error))
+            }
         }
         // Start the data task
         task.resume()
     }
-}
-
-/// Errors that can occur while fetching data.
-enum NetworkError: Error {
-    case invalidURL  // The URL is invalid
-    case noData      // No data was returned from the request
 }

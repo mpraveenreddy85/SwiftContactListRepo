@@ -26,7 +26,8 @@ class ContactViewModelTests: XCTestCase {
     }
     
     func testFetchContactsSuccess() {
-        let mockData = "[{\"id\": 1, \"name\": \"John Doe\"}]".data(using: .utf8)!
+        let mockContacts: [Contact] = [Contact(id: 1, name: "John Doe", email: "john.doe@example.com")]
+        let mockData = try! JSONEncoder().encode(mockContacts)
         mockNetworkHelper.fetchContactsResult = .success(mockData)
         
         let expectation = XCTestExpectation(description: "Contacts fetched successfully")
@@ -35,6 +36,7 @@ class ContactViewModelTests: XCTestCase {
             XCTAssertEqual(self.viewModel.numberOfContacts(), 1)
             let contact = self.viewModel.contact(at: 0)
             XCTAssertEqual(contact?.name, "John Doe")
+            XCTAssertEqual(contact?.email, "john.doe@example.com")
             expectation.fulfill()
         }
         

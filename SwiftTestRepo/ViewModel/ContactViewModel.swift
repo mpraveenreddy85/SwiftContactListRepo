@@ -7,7 +7,6 @@
 
 import Foundation
 
-/// A view model class responsible for managing contacts data.
 class ContactViewModel {
     
     /// An instance of `NetworkHelperProtocol` to fetch contacts data.
@@ -29,27 +28,27 @@ class ContactViewModel {
     // Closure that gets called when there's an error fetching contacts
     var onFetchError: ((Error) -> Void)?
     
-    /// Initializes the `ContactViewModel` with a given `NetworkHelperProtocol`.
-    /// - Parameter networkHelper: The `NetworkHelperProtocol` instance to use for fetching contacts. Defaults to `NetworkHelper.shared`.
+    // Initializes the `ContactViewModel` with a given `NetworkHelperProtocol`.
+    // - Parameter networkHelper: The `NetworkHelperProtocol` instance to use for fetching contacts. Defaults to `NetworkHelper.shared`.
     init(networkHelper: NetworkHelperProtocol = NetworkHelper.shared) {
         self.networkHelper = networkHelper
     }
     
+    // Generic fetch method to fetch and decode any type of data from the network.
+    // - Parameters:
+    //   - urlString: The URL string from which to fetch data.
+    //   - completion: A closure that is called with the result of the fetch operation, containing either the decoded data or an error.
+    func fetch<T: Decodable>(urlString: String, completion: @escaping (Result<T, Error>) -> Void) {
+        networkHelper.fetchData(urlString: urlString, completion: completion)
+    }
     
     /// Fetches contacts from the network.
     func fetchContacts() {
-        networkHelper.fetchContacts { [weak self] result in
+        fetch(urlString: Constants.URLs.contactsURL) { [weak self] (result: Result<[Contact], Error>) in
             switch result {
-            case .success(let data):
-                do {
-                    // Decode the data into an array of Contact objects
-                    let decodedContacts = try JSONDecoder().decode([Contact].self, from: data)
-                    // Update the contacts property, which will trigger the onContactsFetched closure
-                    self?.contacts = decodedContacts
-                } catch {
-                    // If decoding fails, trigger the onFetchError closure with the error
-                    self?.onFetchError?(error)
-                }
+            case .success(let decodedContacts):
+                // Update the contacts property, which will trigger the onContactsFetched closure
+                self?.contacts = decodedContacts
             case .failure(let error):
                 // If the network request fails, trigger the onFetchError closure with the error
                 self?.onFetchError?(error)
@@ -62,9 +61,9 @@ class ContactViewModel {
         return contacts.count
     }
     
-    /// Retrieves a contact at a specific index.
-    /// index: The index of the contact to retrieve.
-    /// The `Contact` object at the specified index, or nil if the index is out of bounds.
+    // Retrieves a contact at a specific index.
+    // - Parameter index: The index of the contact to retrieve.
+    // - Returns: The `Contact` object at the specified index, or nil if the index is out of bounds.
     func contact(at index: Int) -> Contact? {
         guard index < contacts.count else { return nil }
         return contacts[index]

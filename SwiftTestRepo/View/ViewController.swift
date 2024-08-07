@@ -28,7 +28,8 @@ class ViewController: UIViewController, UITableViewDataSource {
         setupErrorLabel()
         setupViewModel()
         
-        // Fetch contacts from the ViewModel
+        // Start activity indicator and fetch contacts
+        activityIndicator.startAnimating()
         viewModel.fetchContacts()
     }
     
@@ -77,7 +78,6 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     func setupViewModel() {
         viewModel.onContactsFetched = { [weak self] in
-            // Ensure UI updates are done on the main thread
             DispatchQueue.main.async {
                 self?.activityIndicator.stopAnimating()
                 self?.tableView.reloadData()

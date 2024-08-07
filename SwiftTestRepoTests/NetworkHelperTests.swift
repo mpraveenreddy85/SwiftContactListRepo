@@ -12,7 +12,8 @@ class NetworkHelperTests: XCTestCase {
 
     func testFetchContactsSuccess() {
         // Given
-        let mockData = "[{\"id\": 1, \"name\": \"John Doe\"}]".data(using: .utf8)!
+        let mockContacts: [Contact] = [Contact(id: 1, name: "John Doe", email: "john.doe@example.com")]
+        let mockData = try! JSONEncoder().encode(mockContacts)
         let mockNetworkHelper = MockNetworkHelper()
         mockNetworkHelper.fetchContactsResult = .success(mockData)
         
