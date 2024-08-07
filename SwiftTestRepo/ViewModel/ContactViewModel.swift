@@ -7,12 +7,13 @@
 
 import Foundation
 
+/// A view model class responsible for managing contacts data.
 class ContactViewModel {
     
-    // URL endpoint for fetching contacts
-    var contactsURL: String
+    /// An instance of `NetworkHelperProtocol` to fetch contacts data.
+    private let networkHelper: NetworkHelperProtocol
     
-    // Array to hold the fetched contacts
+    /// An array of `Contact` objects representing the fetched contacts.
     var contacts: [Contact] = [] {
         didSet {
             // Notify that contacts have been fetched whenever the contacts property is updated
@@ -28,22 +29,16 @@ class ContactViewModel {
     // Closure that gets called when there's an error fetching contacts
     var onFetchError: ((Error) -> Void)?
     
-    /**
-     Initializes the ViewModel with a given URL for fetching contacts.
-     - Parameter contactsURL: The URL string to fetch contacts from. Defaults to a predefined URL.
-     */
-    init(contactsURL: String = Constants.URLs.contactsURL) {
-        self.contactsURL = contactsURL
+    /// Initializes the `ContactViewModel` with a given `NetworkHelperProtocol`.
+    /// - Parameter networkHelper: The `NetworkHelperProtocol` instance to use for fetching contacts. Defaults to `NetworkHelper.shared`.
+    init(networkHelper: NetworkHelperProtocol = NetworkHelper.shared) {
+        self.networkHelper = networkHelper
     }
     
     
     /// Fetches contacts from the network.
     func fetchContacts() {
-        // Ensure the URL is valid
-        guard let url = URL(string: contactsURL) else { return }
-        
-        // Use NetworkHelper to fetch data from the URL
-        NetworkHelper.shared.fetchData(from: url) { [weak self] result in
+        networkHelper.fetchContacts { [weak self] result in
             switch result {
             case .success(let data):
                 do {
@@ -67,8 +62,9 @@ class ContactViewModel {
         return contacts.count
     }
     
-    // Parameter index: The index of the contact to retrieve.
-    // Returns: The Contact object at the specified index, or nil if the index is out of bounds.
+    /// Retrieves a contact at a specific index.
+    /// index: The index of the contact to retrieve.
+    /// The `Contact` object at the specified index, or nil if the index is out of bounds.
     func contact(at index: Int) -> Contact? {
         guard index < contacts.count else { return nil }
         return contacts[index]

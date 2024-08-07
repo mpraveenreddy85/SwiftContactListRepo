@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182366BB2C63709300F0FBED /* MockNetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182366BA2C63709300F0FBED /* MockNetworkHelper.swift */; };
+		182366BD2C6374B600F0FBED /* NetworkHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182366BC2C6374B600F0FBED /* NetworkHelperProtocol.swift */; };
 		18963DB12C61D84A0063B76A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18963DB02C61D84A0063B76A /* AppDelegate.swift */; };
 		18963DB32C61D84A0063B76A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18963DB22C61D84A0063B76A /* SceneDelegate.swift */; };
 		18963DB52C61D84A0063B76A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18963DB42C61D84A0063B76A /* ViewController.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		182366BA2C63709300F0FBED /* MockNetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkHelper.swift; sourceTree = "<group>"; };
+		182366BC2C6374B600F0FBED /* NetworkHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelperProtocol.swift; sourceTree = "<group>"; };
 		18963DAD2C61D84A0063B76A /* SwiftTestRepo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTestRepo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18963DB02C61D84A0063B76A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18963DB22C61D84A0063B76A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 			children = (
 				18963DC92C61DAD50063B76A /* ContactViewModel.swift */,
 				18EE81FF2C623F4800ABA3BE /* NetworkHelper.swift */,
+				182366BC2C6374B600F0FBED /* NetworkHelperProtocol.swift */,
 				18EE82012C62412F00ABA3BE /* Constants.swift */,
 			);
 			path = ViewModel;
@@ -138,6 +143,7 @@
 				18EE82092C6244F900ABA3BE /* SwiftTestRepoTests.swift */,
 				18EE82102C62470C00ABA3BE /* ContactViewModelTests.swift */,
 				18EE82122C62473800ABA3BE /* NetworkHelperTests.swift */,
+				182366BA2C63709300F0FBED /* MockNetworkHelper.swift */,
 			);
 			path = SwiftTestRepoTests;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 				18EE82002C623F4800ABA3BE /* NetworkHelper.swift in Sources */,
 				18963DCC2C6208490063B76A /* ContactTableViewCell.swift in Sources */,
 				18963DC52C61D9980063B76A /* Contact.swift in Sources */,
+				182366BD2C6374B600F0FBED /* NetworkHelperProtocol.swift in Sources */,
 				18963DB52C61D84A0063B76A /* ViewController.swift in Sources */,
 				18963DCA2C61DAD50063B76A /* ContactViewModel.swift in Sources */,
 				18963DB12C61D84A0063B76A /* AppDelegate.swift in Sources */,
@@ -260,6 +267,7 @@
 			files = (
 				18EE820A2C6244F900ABA3BE /* SwiftTestRepoTests.swift in Sources */,
 				18EE82112C62470C00ABA3BE /* ContactViewModelTests.swift in Sources */,
+				182366BB2C63709300F0FBED /* MockNetworkHelper.swift in Sources */,
 				18EE82132C62473800ABA3BE /* NetworkHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

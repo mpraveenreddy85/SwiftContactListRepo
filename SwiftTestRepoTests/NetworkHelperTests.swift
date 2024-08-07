@@ -10,75 +10,94 @@ import XCTest
 
 class NetworkHelperTests: XCTestCase {
 
-    func testFetchDataWithValidURL() {
-        // Define an expectation for the asynchronous operation
-        let expectation = self.expectation(description: "Fetch data")
-        // Use a valid URL for testing
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/users") else {
-            XCTFail("Invalid URL")
-            return
-        }
-
-        NetworkHelper.shared.fetchData(from: url) { result in
+    func testFetchContactsSuccess() {
+        // Given
+        let mockData = "[{\"id\": 1, \"name\": \"John Doe\"}]".data(using: .utf8)!
+        let mockNetworkHelper = MockNetworkHelper()
+        mockNetworkHelper.fetchContactsResult = .success(mockData)
+        
+        let expectation = XCTestExpectation(description: "Fetch contacts successfully")
+        
+        // When
+        mockNetworkHelper.fetchContacts { result in
+            // Then
             switch result {
             case .success(let data):
-                // Verify that data was received
-                XCTAssertNotNil(data)
-                expectation.fulfill() // Fulfill the expectation
+                XCTAssertEqual(data, mockData, "Data should match mock data")
+                expectation.fulfill()
             case .failure(let error):
-                XCTFail("Fetch data failed with error: \(error.localizedDescription)")
+                XCTFail("Expected success, but got failure with error: \(error)")
             }
         }
-
-        // Wait for the expectation to be fulfilled or timeout
-        waitForExpectations(timeout: 5, handler: nil)
+        
+        wait(for: [expectation], timeout: 1.0)
     }
-
-    func testFetchDataWithInvalidURL() {
-        // Define an expectation for the asynchronous operation
-        let expectation = self.expectation(description: "Fetch data")
-        // Use an invalid URL to simulate a failure
-        guard let url = URL(string: "https://invalidurl.com") else {
-            XCTFail("Invalid URL")
-            return
-        }
-
-        NetworkHelper.shared.fetchData(from: url) { result in
+    
+    func testFetchContactsFailure() {
+        // Given
+        let mockNetworkHelper = MockNetworkHelper()
+        mockNetworkHelper.fetchContactsResult = .failure(NetworkError.noData)
+        
+        let expectation = XCTestExpectation(description: "Fetch contacts failed")
+        
+        // When
+        mockNetworkHelper.fetchContacts { result in
+            // Then
             switch result {
-            case .success(let data):
-                XCTFail("Fetch data should have failed, but succeeded with data: \(data)")
+            case .success:
+                XCTFail("Expected failure, but got success")
             case .failure(let error):
-                // Verify that an error occurred
-                XCTAssertNotNil(error)
-                expectation.fulfill() // Fulfill the expectation
+                XCTAssertEqual(error as? NetworkError, NetworkError.noData, "Error should match NetworkError.noData")
+                expectation.fulfill()
             }
         }
-
-        // Wait for the expectation to be fulfilled or timeout
-        waitForExpectations(timeout: 5, handler: nil)
+        
+        wait(for: [expectation], timeout: 1.0)
     }
-
-    func testFetchDataWithNoData() {
-        // Define an expectation for the asynchronous operation
-        let expectation = self.expectation(description: "Fetch data")
-        // Use a URL that simulates an empty response
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/nodata") else {
-            XCTFail("Invalid URL")
-            return
-        }
-
-        NetworkHelper.shared.fetchData(from: url) { result in
+    
+    func testFetchContactsWithEmptyData() {
+        // Given
+        let emptyData = "[]".data(using: .utf8)!
+        let mockNetworkHelper = MockNetworkHelper()
+        mockNetworkHelper.fetchContactsResult = .success(emptyData)
+        
+        let expectation = XCTestExpectation(description: "Fetch contacts with empty data")
+        
+        // When
+        mockNetworkHelper.fetchContacts { result in
+            // Then
             switch result {
             case .success(let data):
-                // Verify that the data is empty
-                XCTAssertTrue(data.isEmpty, "Expected empty data, but received data with length: \(data.count)")
-                expectation.fulfill() // Fulfill the expectation
+                XCTAssertEqual(data, emptyData, "Data should be empty but valid")
+                expectation.fulfill()
             case .failure(let error):
-                XCTFail("Fetch data failed with error: \(error.localizedDescription)")
+                XCTFail("Expected success, but got failure with error: \(error)")
             }
         }
-
-        // Wait for the expectation to be fulfilled or timeout
-        waitForExpectations(timeout: 5, handler: nil)
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testFetchContactsWithInvalidData() {
+        // Given
+        let invalidData = "{\"invalid\": \"data\"}".data(using: .utf8)!
+        let mockNetworkHelper = MockNetworkHelper()
+        mockNetworkHelper.fetchContactsResult = .success(invalidData)
+        
+        let expectation = XCTestExpectation(description: "Fetch contacts with invalid data")
+        
+        // When
+        mockNetworkHelper.fetchContacts { result in
+            // Then
+            switch result {
+            case .success(let data):
+                XCTAssertEqual(data, invalidData, "Data should be invalid but received")
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail("Expected success, but got failure with error: \(error)")
+            }
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
     }
 }

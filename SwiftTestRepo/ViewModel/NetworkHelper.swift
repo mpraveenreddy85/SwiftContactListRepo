@@ -7,40 +7,47 @@
 
 import Foundation
 
-/// A singleton class for handling network requests.
-class NetworkHelper {
-    
-    // Shared instance for global use
+/// A singleton class responsible for fetching contacts data from a network source.
+class NetworkHelper: NetworkHelperProtocol {
+    /// The shared instance of `NetworkHelper`.
     static let shared = NetworkHelper()
     
-    // Private initializer to prevent multiple instances
+    /// Private initializer to ensure singleton usage.
     private init() {}
     
-    
-    // Parameter completion: A closure called with the result of the fetch operation
-    
-    func fetchData(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
+    /// Fetches contacts data from the predefined URL.
+    /// - Parameter completion: A closure that is called with the result of the fetch operation, containing either the fetched data or an error.
+    func fetchContacts(completion: @escaping (Result<Data, Error>) -> Void) {
+        // Ensure the URL is valid
+        guard let url = URL(string: Constants.URLs.contactsURL) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+        
         // Create a data task to fetch data from the URL
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
-                // Return an error if one occurred
+                // If there's an error, pass it to the completion handler
                 completion(.failure(error))
                 return
             }
             
             guard let data = data else {
-                // Return an error if no data was received
-                let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: Constants.Errors.noDataReceived])
-                completion(.failure(error))
+                // If no data is returned, pass a noData error to the completion handler
+                completion(.failure(NetworkError.noData))
                 return
             }
             
-            // Return the fetched data
+            // Pass the fetched data to the completion handler
             completion(.success(data))
         }
-        
         // Start the data task
         task.resume()
     }
 }
 
+/// Errors that can occur while fetching data.
+enum NetworkError: Error {
+    case invalidURL  // The URL is invalid
+    case noData      // No data was returned from the request
+}
