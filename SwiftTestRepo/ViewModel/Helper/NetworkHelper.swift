@@ -15,12 +15,6 @@ class NetworkHelper: NetworkHelperProtocol {
     /// Private initializer to ensure singleton usage.
     private init() {}
     
-   
-    /// Fetches raw contacts data from the predefined URL.
-    /// - Parameter completion: A closure that is called with the result of the fetch operation, containing either the fetched data or an error.
-    func fetchContacts(completion: @escaping (Result<Data, Error>) -> Void) {
-        fetchData(urlString: Constants.URLs.contactsURL, completion: completion)
-    }
     
     /// Fetches and decodes data from the specified URL.
     /// - Parameters:
